@@ -1,0 +1,10 @@
+.titleListWrapper {
+    margin: 40px auto;
+    min-height: 10vh;
+    width: 95%;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 40px;
+}

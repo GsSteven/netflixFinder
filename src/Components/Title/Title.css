@@ -1,0 +1,19 @@
+.titleWrapper {
+    margin: 40px 10px;
+    text-align: center;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+
+#titleType {
+    height: 1.5em;
+}
+
+.mainTitle {
+    display: none;
+}
+
+#starRating {
+    height: 1em;
+    padding-right: 5px;
+}
