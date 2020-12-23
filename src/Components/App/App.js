@@ -15,11 +15,12 @@ class App extends React.Component {
       query: '',
       titles: [],
       currentPage: 1,
-      daysBack: '30',
+      daysBack: 7,
       moreTitles: false
     }
     this.newTitles = this.newTitles.bind(this);
     this.moreTitles = this.moreTitles.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   newTitles() {
@@ -39,7 +40,7 @@ class App extends React.Component {
         this.setState({
           titles: this.state.titles.concat(response.data.ITEMS)
         });
-        response.data.COUNT > "100" ? this.setState({ moreTitles: true }) : this.setState({ moreTitles: false });
+        Number(response.data.COUNT) > 100 ? this.setState({ moreTitles: true }) : this.setState({ moreTitles: false });
       })
       .catch(function (error) {
         console.error(error);
@@ -54,6 +55,15 @@ class App extends React.Component {
     });
   }
 
+  handleChange(e) {
+    const newValue = e.target.value;
+    if (newValue) {
+      this.setState({ daysBack: newValue });
+    } else {
+      this.setState({ titles: [] });
+    }
+  }
+
 
   render() {
     return (
@@ -62,11 +72,13 @@ class App extends React.Component {
           <img id="headLogo" src={headerLogo} alt="Netflix" />
         </header>
         <div className="searchArea">
-          <input className="searchBar" type="text" placeholder="search" />
-          <button id="search">Search</button>
+          <input className="searchBar" type="number" placeholder="how many days back?" onChange={this.handleChange} />
           <br />
           <button id="whatsNew" onClick={this.newTitles}>Whats new?</button>
         </div>
+        {this.state.titles[0] &&
+          <h1 id="daysDisplay">New releases since {this.state.daysBack} days ago</h1>
+        }
         <TitleList titles={this.state.titles} />
         {this.state.moreTitles &&
           <button className="moreButton" onClick={this.moreTitles}>more</button>
