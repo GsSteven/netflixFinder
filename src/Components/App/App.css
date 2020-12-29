@@ -36,6 +36,16 @@ header {
   font-size: 1.5rem;
 }
 
+#whatsNew {
+  margin-top: 10px;
+  width: 100px;
+  height: 25px;
+  font-weight: 600;
+  background-color: rgb(229, 9, 20);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 #daysDisplay {
   color: white;
   border-bottom: 1px solid red;
@@ -43,8 +53,19 @@ header {
   margin-top: 10px;
 }
 
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .moreButton {
-  margin: 0 auto;
+  margin-bottom: 4em;
+  font-size: 1.5em;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(229, 9, 20);
+  cursor: pointer;
 }
 
 

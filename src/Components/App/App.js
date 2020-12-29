@@ -21,6 +21,7 @@ class App extends React.Component {
     this.newTitles = this.newTitles.bind(this);
     this.moreTitles = this.moreTitles.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   newTitles() {
@@ -36,11 +37,16 @@ class App extends React.Component {
 
     axios.request(options)
       .then(response => {
-        console.log(response);
         this.setState({
           titles: this.state.titles.concat(response.data.ITEMS)
         });
-        Number(response.data.COUNT) > 100 ? this.setState({ moreTitles: true }) : this.setState({ moreTitles: false });
+        //remove more button if all titles are displayed
+        if (this.state.titles.length === Number(response.data.COUNT)) {
+          this.setState({ moreTitles: false })
+        } else {
+          //display more titles button if count is more than displayed
+          Number(response.data.COUNT) > 100 ? this.setState({ moreTitles: true }) : this.setState({ moreTitles: false });
+        }
       })
       .catch(function (error) {
         console.error(error);
@@ -50,7 +56,6 @@ class App extends React.Component {
 
   moreTitles() {
     this.setState({ currentPage: this.state.currentPage + 1 }, () => {
-      console.log(this.state.currentPage);
       this.newTitles();
     });
   }
@@ -64,6 +69,12 @@ class App extends React.Component {
     }
   }
 
+  handleKeyPress(e) {
+    if (e.charCode === 13) {
+      this.newTitles();
+    }
+  }
+
 
   render() {
     return (
@@ -72,7 +83,7 @@ class App extends React.Component {
           <img id="headLogo" src={headerLogo} alt="Netflix" />
         </header>
         <div className="searchArea">
-          <input className="searchBar" type="number" placeholder="how many days back?" onChange={this.handleChange} />
+          <input className="searchBar" type="number" placeholder="how many days back?" onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
           <br />
           <button id="whatsNew" onClick={this.newTitles}>Whats new?</button>
         </div>
@@ -81,7 +92,9 @@ class App extends React.Component {
         }
         <TitleList titles={this.state.titles} />
         {this.state.moreTitles &&
-          <button className="moreButton" onClick={this.moreTitles}>more</button>
+          <div className="buttonContainer">
+            <button className="moreButton" onClick={this.moreTitles}>more</button>
+          </div>
         }
       </div>
     );
