@@ -40,6 +40,7 @@ class App extends React.Component {
         this.setState({
           titles: this.state.titles.concat(response.data.ITEMS)
         });
+        console.log(response);
         //remove more button if all titles are displayed
         if (this.state.titles.length === Number(response.data.COUNT)) {
           this.setState({ moreTitles: false })
@@ -57,6 +58,7 @@ class App extends React.Component {
   moreTitles() {
     this.setState({ currentPage: this.state.currentPage + 1 }, () => {
       this.newTitles();
+      console.log(this.state.currentPage);
     });
   }
 
