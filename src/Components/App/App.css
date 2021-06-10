@@ -25,30 +25,30 @@ header {
   height: 100%;
 }
 
+#daysBackHead {
+  color:rgb(229, 9, 20);
+  text-align: center;
+  margin-bottom: 5px;
+}
+
 .searchArea {
   text-align: center;
-  width: 80%;
   margin: 0 auto;
 }
 
 .searchBar {
+  width: 75px;
   text-align: center;
   font-size: 1.5rem;
 }
 
-#whatsNew {
-  margin-top: 10px;
-  width: 100px;
-  height: 25px;
-  font-weight: 600;
-  background-color: rgb(229, 9, 20);
-  border-radius: 3px;
-  cursor: pointer;
+.displayErrors {
+  color:rgb(229, 9, 20);
 }
 
 #daysDisplay {
   color: white;
-  border-bottom: 1px solid red;
+  border-bottom: 2px solid rgb(229, 9, 20);
   text-align: center;
   margin-top: 10px;
 }
