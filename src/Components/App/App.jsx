@@ -1,11 +1,43 @@
 import "./App.css";
 import React from "react";
+import { motion } from "framer-motion";
 import TitleList from "../TitleList/TitleList";
 import headerLogo from "./../../images/netflixLogo.png";
 import axios from "axios";
 require("dotenv").config();
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+
+const slideDownVariant = {
+  hidden: {
+    y: -200,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+};
+
+const slideDownDelayVariant = {
+  hidden: {
+    y: -100,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+      delay: 0.4,
+    },
+  },
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -101,18 +133,34 @@ class App extends React.Component {
   render() {
     return (
       <div className="appWrapper">
-        <header>
+        <motion.header
+          variants={slideDownVariant}
+          initial="hidden"
+          animate="visible"
+        >
           <img id="headLogo" src={headerLogo} alt="Netflix" />
-        </header>
-        <h2 id="daysBackHead">How many days back?</h2>
-        <div className="searchArea">
+        </motion.header>
+        <motion.h2
+          id="daysBackHead"
+          variants={slideDownDelayVariant}
+          initial="hidden"
+          animate="visible"
+        >
+          How many days back?
+        </motion.h2>
+        <motion.div
+          className="searchArea"
+          variants={slideDownDelayVariant}
+          initial="hidden"
+          animate="visible"
+        >
           <input
             className="searchBar"
             type="number"
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
           />
-        </div>
+        </motion.div>
         {this.state.errors && (
           <p className="displayErrors">{this.state.errors}</p>
         )}

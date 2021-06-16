@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from "framer-motion";
 import ExpandedTitle from './../ExpandedTitle/ExpandedTitle';
 import './Title.css';
 
@@ -29,7 +30,12 @@ class Title extends React.Component {
             <div className="titleWrapper" onClick={this.toggleExpand}>
                 <h1 className="mainTitle">{this.props.title}</h1>
                 <h3 className="releaseYear">{this.props.released}</h3>
-                <img className="thumbImage" src={this.props.image} alt="movie poster" />
+                <motion.img
+                    className="thumbImage"
+                    src={this.props.image}
+                    alt="movie poster"
+                    whileHover={{ scale: 1.2, boxShadow: "0 0 15px rgb(229, 9, 20)" }}
+                />
                 <br />
                 <img id="titleType" src={this.props.type === "movie" ? movie : series} alt="typeIcon" />
                 <h3 className="runtime">{this.props.runtime}</h3>

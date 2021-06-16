@@ -1,5 +1,6 @@
 import React from 'react';
 import './ExpandedTitle.css';
+import { motion } from "framer-motion";
 import star from './../../images/starIcon.png';
 
 class ExpandedTitle extends React.Component {
@@ -7,7 +8,12 @@ class ExpandedTitle extends React.Component {
         const hasRating = this.props.rating && Number(this.props.rating) ? true : false;
 
         return (
-            <div className="expandedTitleWrapper">
+            <motion.div
+                className="expandedTitleWrapper"
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: .4, type: "tween" }}
+            >
                 <button className="closeExpand" onClick={this.props.toggle}>X</button>
                 <br />
                 <img className="expandedImage" src={this.props.largeImage} alt="large media" />
@@ -24,8 +30,8 @@ class ExpandedTitle extends React.Component {
                 <h2><u>Description:</u></h2>
                 <p className="expandedSynopsis">{this.props.synopsis}</p>
                 <br />
-                <h3 className="expandedImdb">Imdb page <a href={`https://www.imdb.com/title/${this.props.imdbid}`} target="_blank" rel="noreferrer">here</a></h3>
-            </div>
+                <h3 className="expandedImdb">Imdb page <a className="imdbLink" href={`https://www.imdb.com/title/${this.props.imdbid}`} target="_blank" rel="noreferrer">here</a></h3>
+            </motion.div>
         );
     }
 };
