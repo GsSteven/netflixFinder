@@ -1,8 +1,10 @@
 .expandedTitleWrapper {
-    position: absolute;
-    top: auto;
+    position: fixed;
+    top: 15%;
     width: 90%;
-    left: 5%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     background-color: rgb(22, 22, 22);
     cursor: default;
     border: 2px solid rgb(146, 0, 0);
