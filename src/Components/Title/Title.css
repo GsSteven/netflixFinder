@@ -5,6 +5,10 @@
     color: rgb(255, 255, 255);
 }
 
+.thumbImage {
+    min-height: 233px;
+}
+
 #titleType {
     height: 1.5em;
 }

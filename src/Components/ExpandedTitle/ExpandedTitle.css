@@ -21,6 +21,10 @@
     border-radius: 2px;
 }
 
+.expandedImage {
+    min-height: 398px;
+}
+
 .expandedSynopsis {
     width: 90%;
     margin: 0 auto;
