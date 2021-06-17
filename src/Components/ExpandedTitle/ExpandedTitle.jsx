@@ -4,6 +4,16 @@ import { motion } from "framer-motion";
 import star from './../../images/starIcon.png';
 
 class ExpandedTitle extends React.Component {
+
+    cleanSynopsis() {
+        let description = this.props.synopsis;
+        const hasApos = description.indexOf('&#39;') !== -1;
+        const hasQuote = description.indexOf('&quot;') !== -1;
+        if (hasApos) description = description.replaceAll('&#39;', "'");
+        if (hasQuote) description = description.replaceAll('&quot;', '"');
+        return description;
+    }
+
     render() {
         const hasRating = this.props.rating && Number(this.props.rating) ? true : false;
 
@@ -12,6 +22,7 @@ class ExpandedTitle extends React.Component {
                 className="expandedTitleWrapper"
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -100, opacity: 0 }}
                 transition={{ duration: .4, type: "tween" }}
             >
                 <button className="closeExpand" onClick={this.props.toggle}>X</button>
@@ -28,7 +39,7 @@ class ExpandedTitle extends React.Component {
                     <h2 className="expandedRuntime">{this.props.runtime}</h2>
                 }
                 <h2><u>Description:</u></h2>
-                <p className="expandedSynopsis">{this.props.synopsis}</p>
+                <p className="expandedSynopsis">{this.cleanSynopsis()}</p>
                 <br />
                 <h3 className="expandedImdb">Imdb page <a className="imdbLink" href={`https://www.imdb.com/title/${this.props.imdbid}`} target="_blank" rel="noreferrer">here</a></h3>
             </motion.div>

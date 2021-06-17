@@ -172,9 +172,14 @@ class App extends React.Component {
         <TitleList titles={this.state.titles} />
         {this.state.moreTitles && this.state.titles[0] && (
           <div className="buttonContainer">
-            <button className="moreButton" onClick={this.moreTitles}>
+            <motion.button
+              className="moreButton"
+              onClick={this.moreTitles}
+              whileHover={{ rotate: [0, 20, -20, 20, 0] }}
+              transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
+            >
               more
-            </button>
+            </motion.button>
           </div>
         )}
       </div>
