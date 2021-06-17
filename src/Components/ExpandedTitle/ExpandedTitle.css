@@ -51,5 +51,7 @@
 @media screen and (max-width: 800px) {
     .expandedTitleWrapper {
         width: 100%;
+        border-left: none;
+        border-right: none;
     }
 }

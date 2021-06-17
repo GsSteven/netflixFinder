@@ -165,9 +165,14 @@ class App extends React.Component {
           <p className="displayErrors">{this.state.errors}</p>
         )}
         {this.state.titles[0] && (
-          <h1 id="daysDisplay">
+          <motion.h1
+            id="daysDisplay"
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, type: "tween" }}
+          >
             New releases since {this.state.daysBack} days ago
-          </h1>
+          </motion.h1>
         )}
         <TitleList titles={this.state.titles} />
         {this.state.moreTitles && this.state.titles[0] && (
