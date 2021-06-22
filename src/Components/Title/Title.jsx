@@ -27,7 +27,12 @@ class Title extends React.Component {
       this.props.rating && Number(this.props.rating) ? true : false;
 
     return (
-      <div className="titleWrapper" onClick={this.toggleExpand}>
+      <motion.div
+        className="titleWrapper"
+        onClick={this.toggleExpand}
+        initial={{ y: -30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1, transition: { duration: 0.3 } }}
+      >
         <h1 className="mainTitle">{this.props.title}</h1>
         <h3 className="releaseYear">{this.props.released}</h3>
         <motion.img
@@ -65,7 +70,7 @@ class Title extends React.Component {
             />
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     );
   }
 }
